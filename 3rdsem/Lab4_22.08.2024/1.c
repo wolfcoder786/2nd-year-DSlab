@@ -16,20 +16,18 @@ struct Node
 void traversal(struct Node* p  ){
     while (p != NULL)
     {
-        printf("Element:%d",p->data);
+        printf("Element:%d\n",p->data);
         p = p->next ;
 
     }
     
 }
-void insertatBegin(struct Node* head , int n){
+struct Node* insertatBegin(struct Node* head , int n){
     struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
     ptr->next = head ;
     ptr->data = n ;
     head = ptr ;
     return head ;
-
-   
 }
 
 int main(){
@@ -48,13 +46,13 @@ int main(){
     third -> next  = NULL;
     printf("The main data elements are:\n");
     traversal(head);
-    
+
     printf("The operation you want :\n");
     printf("1.Insert a node at the beginning of the SLL\n");
     printf("2.Insert a node at the end of the SLL\n");
     printf("3. Insert at a specific position\n");
     printf("4.Count nodesL\n");
-    printf("5.Traverse the linked list");
+    printf("5.Traverse the linked list\n");
     int a ;
     printf("Enter the number you want:");
     scanf("%d",&a);
@@ -63,7 +61,9 @@ int main(){
         int n ;
         printf("Enter the data you want to insert at begin:");
         scanf("%d",&n);
-        insertatBegin(head,n);
+        head = insertatBegin(head,n);
+        traversal(head);
+
 
     }
     
