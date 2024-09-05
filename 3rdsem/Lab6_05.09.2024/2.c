@@ -1,83 +1,82 @@
-/*LE5.1 Write a menu driven program to perform the following operations in a stack using array by
+/*LE5.2 Write a menu driven program to perform the following operations in a stack linked list by
 using suitable user defined functions for each case.
 a) Check if the stack is empty
 b) Display the contents of stack
 c) Push
-d) Pop
+d) pop
 Verify &amp; validate each function from main method.*/
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 100 // Define maximum size of stack
-
-int stack[MAX]; // Array to store stack elements
-int top = -1;   // Top initialized to -1 indicating the stack is empty
+// Node structure for stack elements
+struct Node
+{
+    int data;
+    struct Node *next;
+};
 
 // Function to check if the stack is empty
-int isEmpty()
+int isEmpty(struct Node *top)
 {
-    return top == -1;
-}
-
-// Function to check if the stack is full
-int isFull()
-{
-    return top == MAX - 1;
-
+    return top == NULL;
 }
 
 // Function to push an element onto the stack
-
-void push(int value)
+void push(struct Node **top, int value)
 {
-    if (isFull())
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    if (newNode == NULL)
     {
         printf("Stack overflow! Cannot push %d\n", value);
+        return;
     }
-    else
-    {
-        top++;
-        stack[top] = value;
-        printf("%d pushed into the stack\n", value);
-    }
+    newNode->data = value;
+    newNode->next = *top;
+    *top = newNode;
+    printf("%d pushed into the stack\n", value);
 }
 
 // Function to pop an element from the stack
-int pop()
+int pop(struct Node **top)
 {
-    if (isEmpty())
+    if (isEmpty(*top))
     {
         printf("Stack underflow! No element to pop\n");
         return -1;
     }
     else
     {
-        int value = stack[top];
-        top--;
-        printf("%d popped from the stack\n", value);
-        return value;
+        struct Node *temp = *top;
+        int poppedValue = temp->data;
+        *top = (*top)->next;
+        free(temp);
+        printf("%d popped from the stack\n", poppedValue);
+        return poppedValue;
     }
 }
 
 // Function to display the contents of the stack
-void display()
+void display(struct Node *top)
 {
-    if (isEmpty())
+    if (isEmpty(top))
     {
         printf("Stack is empty!\n");
     }
     else
     {
         printf("Stack elements are:\n");
-        for (int i = top; i >= 0; i--)
+        struct Node *temp = top;
+        while (temp != NULL)
         {
-            printf("%d\n", stack[i]);
+            printf("%d\n", temp->data);
+            temp = temp->next;
         }
     }
 }
 
 int main()
 {
+    struct Node *top = NULL;
     int choice, value;
 
     while (1)
@@ -96,13 +95,13 @@ int main()
         case 1:
             printf("Enter value to push: ");
             scanf("%d", &value);
-            push(value);
+            push(&top, value);
             break;
         case 2:
-            pop();
+            pop(&top);
             break;
         case 3:
-            if (isEmpty())
+            if (isEmpty(top))
             {
                 printf("The stack is empty.\n");
             }
@@ -112,7 +111,7 @@ int main()
             }
             break;
         case 4:
-            display();
+            display(top);
             break;
         case 5:
             exit(0);
