@@ -12,26 +12,32 @@ Verify & validate each function from main method.*/
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+struct Node
+{
     struct Node *prev;
     int data;
     struct Node *next;
 };
 
-struct Node* create(struct Node *head, int size) {
+struct Node *create(struct Node *head, int size)
+{
     int i;
     struct Node *p = head;
 
-    for (i = 1; i < size; i++) {  // Starting from 1 since head is already created
-        struct Node *new_node = (struct Node*)malloc(sizeof(struct Node));
+    for (i = 1; i < size; i++)
+    { // Starting from 1 since head is already created
+        struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
         printf("Enter the data Element%d: ", i + 1);
         scanf("%d", &(new_node->data));
         new_node->next = NULL;
 
-        if (p == NULL) {
+        if (p == NULL)
+        {
             head = new_node;
             p = head;
-        } else {
+        }
+        else
+        {
             p->next = new_node;
             new_node->prev = p;
             p = p->next;
@@ -41,22 +47,25 @@ struct Node* create(struct Node *head, int size) {
     return head;
 }
 
-void traversef(struct Node *head) {  // Corrected the function signature
+void traversef(struct Node *head)
+{ // Corrected the function signature
     struct Node *p = head;
 
-    while (p != NULL) {
+    while (p != NULL)
+    {
         printf("%d ", p->data);
         p = p->next;
     }
     printf("\n");
 }
-void trverseb(struct Node * head ){
-    struct Node * p = head ;
-    struct Node * q ;
+void trverseb(struct Node *head)
+{
+    struct Node *p = head;
+    struct Node *q;
     struct node *current, *temp;
 
     current = head;
-    while(current != NULL)
+    while (current != NULL)
     {
         /*
          * Swap the previous and next address fields of current node
@@ -68,21 +77,22 @@ void trverseb(struct Node * head ){
         /* Move the current pointer to next node which is stored in temp */
         p = q;
     }
-    
-    /* 
+
+    /*
      * Swap the head and last pointers
      */
-  
 
     printf("LIST REVERSED SUCCESSFULLY.\n");
 }
 
-int main() {
+int main()
+{
     int size;
     printf("Enter the Number of Nodes: ");
     scanf("%d", &size);
 
-    if (size <= 0) {
+    if (size <= 0)
+    {
         printf("Size should be greater than 0.\n");
         return 1;
     }

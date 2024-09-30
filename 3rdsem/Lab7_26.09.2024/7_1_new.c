@@ -1,6 +1,8 @@
+/*Write a menu driven program to implement linear queue operations such as Enqueue, 
+Dequeue, IsEmpty, Traverse using single linked list.*/
 #include <stdio.h>
 #include <stdlib.h>
-// #define MAX 5 // Define the maximum size of the queue
+#define MAX 5; // Define the maximum size of the queue?
 
 // Queue structure
 struct Queue
@@ -28,14 +30,13 @@ int main()
 
     while (1)
     {
-        printf("\n==== Queue Operations Menu ====\n");
+        printf("\n Queue Operations Menu\n");
         printf("1. Enqueue\n");
         printf("2. Dequeue\n");
         printf("3. Traverse\n");
         printf("4. IsEmpty\n");
         printf("5. IsFull\n");
         printf("6. Exit\n");
-        printf("===============================\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 

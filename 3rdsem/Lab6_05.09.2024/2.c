@@ -68,9 +68,10 @@ void display(struct Node *top)
         struct Node *temp = top;
         while (temp != NULL)
         {
-            printf("%d\n", temp->data);
+            printf("%d ->", temp->data);
             temp = temp->next;
         }
+        printf("X");
     }
 }
 

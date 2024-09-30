@@ -104,7 +104,7 @@ int covertInfixToPostfix(char* expression)
   
 int main()  
 {  
-char expression[] = "((x+(y*z))-w)";   
+char expression[] = "(a+(b*c-(d/e^f)*g)*h)";   
     covertInfixToPostfix(expression);   
     return 0;   
 }  
